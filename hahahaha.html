@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine Greeting 🌸🍫</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    background:#fff3f6;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family:'Poppins',sans-serif;
+    position:relative;
+}
+
+/* Floating Flowers */
+.flower{
+    position:absolute;
+    opacity:0.8;
+    animation:float 10s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(100vh) rotate(0deg);opacity:0;}
+    30%{opacity:0.9;}
+    100%{transform:translateY(-10vh) rotate(360deg);opacity:0;}
+}
+
+/* Chocolate Decoration */
+.chocolate{
+    position:absolute;
+    font-size:50px;
+    animation:chocoFloat 4s ease-in-out infinite;
+}
+
+.left-choco{
+    left:20px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.right-choco{
+    right:20px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+@keyframes chocoFloat{
+    0%,100%{transform:translateY(-50%) rotate(-5deg);}
+    50%{transform:translateY(-60%) rotate(5deg);}
+}
+
+/* Card */
+.card{
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 20px 50px rgba(255,105,135,0.2);
+    width:90%;
+    max-width:500px;
+    text-align:center;
+    animation:fadeIn 1.5s ease;
+    z-index:2;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+h1{
+    font-family:'Playfair Display',serif;
+    font-size:2.2rem;
+    color:#d6336c;
+    margin-bottom:10px;
+}
+
+h2{
+    font-weight:400;
+    color:#555;
+    margin-bottom:20px;
+}
+
+.message{
+    font-size:1rem;
+    color:#444;
+    line-height:1.6;
+    min-height:70px;
+}
+
+button{
+    margin-top:20px;
+    padding:10px 25px;
+    border:none;
+    border-radius:25px;
+    background:#d6336c;
+    color:white;
+    font-size:1rem;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#ff4d88;
+    transform:scale(1.05);
+}
+
+/* Responsive */
+@media(max-width:600px){
+    .chocolate{
+        font-size:35px;
+        opacity:0.7;
+    }
+    h1{font-size:1.6rem;}
+    .card{padding:25px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Chocolate Decorations -->
+<div class="chocolate left-choco">🍫</div>
+<div class="chocolate right-choco">🍫</div>
+
+<div class="card">
+    <h1>Happy Valentine's Day 🌸</h1>
+    <h2>Penge Chocolate 🍫</h2>
+    <div class="message" id="loveMessage"></div>
+    <button onclick="showMessage()">Tap </button>
+</div>
+
+<script>
+/* MORE Floating Flowers */
+function createFlower(){
+    const flower=document.createElement("div");
+    flower.className="flower";
+
+    const flowers=["🌸","🌷","🌹","💮","🌺","🌼"];
+    flower.innerHTML=flowers[Math.floor(Math.random()*flowers.length)];
+
+    flower.style.left=Math.random()*100+"vw";
+    flower.style.fontSize=(Math.random()*20+18)+"px";
+    flower.style.animationDuration=(Math.random()*4+6)+"s";
+
+    document.body.appendChild(flower);
+
+    setTimeout(()=>flower.remove(),10000);
+}
+
+/* Increase flower frequency */
+setInterval(createFlower,400);
+
+/* Typewriter Effect */
+function typeWriter(text,element){
+    let i=0;
+    element.innerHTML="";
+    function typing(){
+        if(i<text.length){
+            element.innerHTML+=text.charAt(i);
+            i++;
+            setTimeout(typing,35);
+        }
+    }
+    typing();
+}
+
+function showMessage(){
+    const message=
+    "Happy Valentine’s Day! 🌸💕 " +
+    "Today isn’t just about romance — it’s also begging for chocolates jklng." +
+    " Remember everything about you is special. 💖 " +
+    " Happy Valentine's Day to you(friend Tobi).";
+
+    typeWriter(message, document.getElementById("loveMessage"));
+}
+</script>
+
+</body>
+</html>
